@@ -1,15 +1,20 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import composite.Group;
+import composite.Shape;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome");
+        var group1 = new Group();
+        group1.add(new Shape()); // square1
+        group1.add(new Shape()); // sqaure2
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        var group2 = new Group();
+        group2.add(new Shape()); // circle1
+        group2.add(new Shape()); // circle2
+
+        var group3 = new Group();
+        group3.add(group1);
+        group3.add(group2);
+        group3.render();
+        group3.move();
     }
 }

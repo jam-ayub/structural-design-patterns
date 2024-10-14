@@ -1,20 +1,11 @@
-import composite.Group;
-import composite.Shape;
+import adapter.*;
+import adapter.avaFilter.Caramel;
 
 public class Main {
     public static void main(String[] args) {
-        var group1 = new Group();
-        group1.add(new Shape()); // square1
-        group1.add(new Shape()); // sqaure2
-
-        var group2 = new Group();
-        group2.add(new Shape()); // circle1
-        group2.add(new Shape()); // circle2
-
-        var group3 = new Group();
-        group3.add(group1);
-        group3.add(group2);
-        group3.render();
-        group3.move();
+        var imageView = new ImageView(new Image());
+        imageView.apply(new VividFilter()); // applying vivid filter
+        imageView.apply(new CaramelFilter(new Caramel())); // using composition (caramelFilter composed of Caramel) | applying caramel using 3rd party library and extending filter interface
+        imageView.apply(new CaramelAdapter()); // applying caramel filter using inheritance
     }
 }

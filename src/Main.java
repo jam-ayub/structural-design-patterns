@@ -2,16 +2,17 @@ import decorator.CloudStream;
 import decorator.CompressedCloudStream;
 import decorator.EncryptedCloudStream;
 import decorator.Stream;
+import facade.Message;
+import facade.NotificationServer;
 
 public class Main {
     public static void main(String[] args) {
-        var cloudstream = new CloudStream();
-        var compressed = new CompressedCloudStream(cloudstream);
-        var encrypt = new EncryptedCloudStream(compressed);
-        storeCreditCard(encrypt);
-    }
+        var server = new NotificationServer();
+        var connection = server.connect("127.0.0.0");
+        var authToken = server.authenticate("123", "456");
+        var message = new Message("Saving Private Ryan.");
+        server.sendMessage(authToken, message, "SMTP Server");
 
-    private static void storeCreditCard(Stream stream) {
-        stream.write("1234-1234-1234-1234");
+        connection.disconnect();
     }
 }

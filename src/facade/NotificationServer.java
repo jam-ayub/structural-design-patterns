@@ -15,7 +15,7 @@ public class NotificationServer {
     }
 
     public void sendMessage(AuthToken authToken, Message message, String target) {
-        System.out.println("Sending Message: ");
+        System.out.println("Sending Message: " + message.content);
     }
 
 

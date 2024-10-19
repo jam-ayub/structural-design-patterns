@@ -1,11 +1,17 @@
-import adapter.*;
-import adapter.avaFilter.Caramel;
+import decorator.CloudStream;
+import decorator.CompressedCloudStream;
+import decorator.EncryptedCloudStream;
+import decorator.Stream;
 
 public class Main {
     public static void main(String[] args) {
-        var imageView = new ImageView(new Image());
-        imageView.apply(new VividFilter()); // applying vivid filter
-        imageView.apply(new CaramelFilter(new Caramel())); // using composition (caramelFilter composed of Caramel) | applying caramel using 3rd party library and extending filter interface
-        imageView.apply(new CaramelAdapter()); // applying caramel filter using inheritance
+        var cloudstream = new CloudStream();
+        var compressed = new CompressedCloudStream(cloudstream);
+        var encrypt = new EncryptedCloudStream(compressed);
+        storeCreditCard(encrypt);
+    }
+
+    private static void storeCreditCard(Stream stream) {
+        stream.write("1234-1234-1234-1234");
     }
 }

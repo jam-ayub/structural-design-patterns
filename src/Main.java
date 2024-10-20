@@ -1,16 +1,17 @@
-
-import facade.NotificationService;
-import flyweight.PointIconFactory;
-import flyweight.PointService;
+import bridge.AdvancedRemoteControl;
+import bridge.RemoteControl;
+import bridge.SamsungTV;
+import bridge.SonyTV;
 
 public class Main {
     public static void main(String[] args) {
-        var pointIconFactory = new PointIconFactory();
+        var remoteControl = new RemoteControl(new SonyTV());
+        remoteControl.turnOn();
 
-        var pointService = new PointService(pointIconFactory);
+        var advancedRemoteControl = new AdvancedRemoteControl(new SonyTV());
+        advancedRemoteControl.turnOn();
 
-        for (var point : pointService.getPoints()) {
-            point.draw();
-        }
+        var advancedRemoteControl1 = new AdvancedRemoteControl(new SamsungTV());
+        advancedRemoteControl1.turnOn();
     }
 }

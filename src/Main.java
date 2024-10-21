@@ -1,17 +1,17 @@
-import bridge.AdvancedRemoteControl;
-import bridge.RemoteControl;
-import bridge.SamsungTV;
-import bridge.SonyTV;
+import proxy.EBookProxy;
+import proxy.Library;
+import proxy.LoggingEBookProxy;
+import proxy.RealEBook;
 
 public class Main {
     public static void main(String[] args) {
-        var remoteControl = new RemoteControl(new SonyTV());
-        remoteControl.turnOn();
+        var library = new Library();
+        String[] fileNames = {"a", "b", "c", "d"};
+        for(var fileName : fileNames) {
+           library.add(new LoggingEBookProxy(fileName));
+        }
 
-        var advancedRemoteControl = new AdvancedRemoteControl(new SonyTV());
-        advancedRemoteControl.turnOn();
-
-        var advancedRemoteControl1 = new AdvancedRemoteControl(new SamsungTV());
-        advancedRemoteControl1.turnOn();
+        library.openEBook("a");
+        library.openEBook("b");
     }
 }
